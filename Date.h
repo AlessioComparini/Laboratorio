@@ -8,11 +8,15 @@
 
 class Date {
 public:
-    Date(int d, int m, int y);
+    Date(int d, int m);
+
+    int getDay() const;
+
+    int getMonth() const;
+
 private:
     int day;
     int month;
-    int year;
 };
 
 
