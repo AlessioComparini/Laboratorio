@@ -11,6 +11,27 @@
 
 class Activity {
 public:
+    Activity (std::string d, std::string t, Date e, bool done);
+
+    bool operator==(Activity right) const;
+
+    void display()const;
+
+    const std::string &getDescription() const;
+
+    void setDescription(const std::string &description);
+
+    const std::string &getTitle() const;
+
+    void setTitle(const std::string &title);
+
+    const Date &getExpiration() const;
+
+    void setExpiration(const Date &expiration);
+
+    bool isDone() const;
+
+    void setDone(bool done);
 
 private:
     std::string description;

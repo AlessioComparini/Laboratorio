@@ -16,7 +16,8 @@ public:
     void printActivitiesDone();
     void addActivity(Activity a);
     void removeActivity(Activity a);
-    void setActivityDone();
+    void setActivityDone(Activity a);
+    void setActivityDone(int position);
 private:
     std::list<Activity> list;
 };
