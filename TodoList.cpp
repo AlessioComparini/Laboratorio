@@ -2,17 +2,24 @@
 // Created by Alessio Comparini on 2019-08-13.
 //
 
+#include <iostream>
 #include "TodoList.h"
 
 void TodoList::printAllActivities() {
-    for (auto it : list)
+    int num = 1;
+    for (auto it : list){
+        std::cout << num++ << ")" << std::endl;
         it.display();
+        std::cout<<std::endl;
+    }
 }
 
 void TodoList::printActivitiesTodo() {
     for (auto it : list){
-        if (!it.isDone())
+        if (!it.isDone()) {
             it.display();
+            std::cout<<std::endl;
+        }
     }
 
 }
@@ -40,6 +47,16 @@ void TodoList::setActivityDone(Activity a) {
     }
 }
 
+void TodoList::removeActivity(int pos) {
+    auto it =list.begin();
+    for (int i=1;i<pos;i++)
+        it++;
+    list.remove(*it);
+}
+
+int TodoList::getSize() {
+    return list.size();
+}
 
 void TodoList::setActivityDone(int position) {
     auto it=list.begin();
