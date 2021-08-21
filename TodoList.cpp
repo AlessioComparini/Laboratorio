@@ -72,3 +72,10 @@ void TodoList::setActivityDone(int position) {
         it++;
     list.remove(*it);
 }
+
+Activity TodoList::getActivityy(int position) {
+    auto it=list.begin();
+    for (int i=1;i<position;i++)
+        it++;
+    return *it;
+}

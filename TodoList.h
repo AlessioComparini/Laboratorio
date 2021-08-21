@@ -20,6 +20,7 @@ public:
     void setActivityDone(Activity a);
     void setActivityDone(int position);
     int getSize();
+    Activity getActivityy(int position);
 private:
     std::list<Activity> list;
 };
