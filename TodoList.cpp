@@ -7,10 +7,18 @@
 
 void TodoList::printAllActivities() {
     int num = 1;
-    for (auto it : list){
-        std::cout << num++ << ")" << std::endl;
-        it.display();
-        std::cout<<std::endl;
+    if (list.size()) {
+        for (auto it : list) {
+            std::cout << num++ << ")";
+            if (it.isDone())
+                std::cout << "DONE";
+            std::cout << std::endl;
+            it.display();
+            std::cout << std::endl;
+        }
+    }
+    else {
+        std::cout<<"List is empty"<<std::endl;
     }
 }
 
@@ -60,7 +68,7 @@ int TodoList::getSize() {
 
 void TodoList::setActivityDone(int position) {
     auto it=list.begin();
-    for (int i=0;i<position;i++)
+    for (int i=1;i<position;i++)
         it++;
     list.remove(*it);
 }

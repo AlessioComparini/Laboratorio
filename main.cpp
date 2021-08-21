@@ -12,7 +12,7 @@ void ClearScreen() {
 int main() {
     TodoList todoList;
     menu:
-    cout << "MAIN MENU" << endl;
+    cout << "\nMAIN MENU" << endl;
     cout << "1- Activity list" << endl;
     cout << "2- Add activity" << endl;
     cout << "3- Remove activity" << endl;
@@ -25,7 +25,7 @@ int main() {
         subMenu1:
             cin.clear();
             todoList.printAllActivities();
-            cout << "What do you want to do?" << endl;
+            cout << "\nWhat do you want to do?" << endl;
             cout << "1- Modify an activity" << endl;
             cout << "2- Go back" << endl;
             cout << "3- Exit" << endl;
@@ -33,19 +33,21 @@ int main() {
             cin.ignore();
             switch (choice) {
                 default:
-                    cout << "Digit error, try again." << endl;
+                    cout << "\nDigit error, try again." << endl;
                     goto subMenu1;
                 case 1: {
                     int activitySel;
                     bool error = false;
                     do {
                         if (error)
-                            cout << "Out of range number, try again" << endl;
-                        cout << "Number of the activity to modify: ";
+                            cout << "\nOut of range number, try again" << endl;
+                        cout << "Number of the activity to modify (type '0' to cancel): ";
                         cin >> activitySel;
+                        if (!activitySel)
+                            goto subMenu1;
                         cout << endl;
                         error = true;
-                    } while (activitySel < 0 || activitySel > todoList.getSize());
+                    } while (activitySel < 1 || activitySel > todoList.getSize());
                     cout << "Activity " << activitySel << "is selected" << endl;
                     cout << "1- Delete it" << endl;
                     cout << "2- Mark as done" << endl;
@@ -55,15 +57,15 @@ int main() {
                     cin.ignore();
                     switch (choice) {
                         default:
-                            cout << "Digit error, try again." << endl;
+                            cout << "\nDigit error, try again." << endl;
                             goto subMenu2;
                         case 1:
                             todoList.removeActivity(activitySel);
-                            cout << "Activity deleted succesfully!" << endl;
+                            cout << "\nActivity deleted succesfully!" << endl;
                             goto subMenu1;
                         case 2:
                             todoList.setActivityDone(activitySel);
-                            cout << "Good job!" << endl;
+                            cout << "\nGood job!" << endl;
                             goto subMenu1;
                         case 3:
                             goto subMenu1;
@@ -105,7 +107,7 @@ int main() {
             error = false;
             do {
                 if (error)
-                    cout << "Out of range number" << endl;
+                    cout << "\nOut of range number" << endl;
                 cout << "Day of expiration: " << endl;
                 cin >> day;
                 cin.ignore();
@@ -118,22 +120,24 @@ int main() {
             goto menu;
         case 3: {
             todoList.printAllActivities();
-            cout << "Number of the activity you want to delete: ";
+            cout << "Number of the activity you want to delete (type '0' to cancel): ";
             int deleteActivity;
             cin >> deleteActivity;
             cout << endl;
+            if(!deleteActivity)
+                goto menu;
             if (deleteActivity <= 0 || deleteActivity > todoList.getSize())
-                cout << "Out of range number" << endl;
+                cout << "\nOut of range number" << endl;
             else {
                 todoList.removeActivity(deleteActivity);
-                cout << "Activity deleted succesfully" << endl;
+                cout << "\nActivity deleted succesfully" << endl;
             }
         }
             goto menu;
         case 4:
             return 0;
         default:
-            cout << "Digit error, try again." << endl;
+            cout << "\nDigit error, try again." << endl;
             goto menu;
     }
 
