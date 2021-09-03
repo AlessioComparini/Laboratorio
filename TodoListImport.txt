@@ -1,6 +1,0 @@
-NEXT
-Passeggio
-Andare a fare una passeggiata
-5
-12
-false

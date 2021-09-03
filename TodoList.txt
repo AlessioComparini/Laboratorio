@@ -1,0 +1,12 @@
+NEXT
+Fare una passeggiata sui monti
+Andare a passeggio
+11
+5
+false
+NEXT
+comprare pasta zucchine e formaggio
+Spesa
+5
+4
+false

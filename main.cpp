@@ -16,19 +16,25 @@ int main() {
         FILE *filePTR;
         int countRiga = 0;
         char riga_del_file[50];
-        char next[10];
-        filePTR = fopen("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoListImport.txt","r");
+        filePTR = fopen("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoList.txt","r");
         if (filePTR){
-            strcpy(next, "NEXT\n");
             char titolo[50], descrizione[50];
             int giorno, mese;
             bool done=false;
             while (!feof(filePTR)){
                 fgets(riga_del_file,50,filePTR);
-                printf(riga_del_file);
-                if (strcmp(next,riga_del_file)==0){
+                if (strcmp("NEXT\n",riga_del_file)==0){
                     countRiga=0;
+                    printf("trovato next");
                 }
+                int pos=0;
+                for (char x : riga_del_file){
+                    if (x == '\n'){
+                        riga_del_file[pos]='\0';
+                    }
+                    pos++;
+                }
+                printf(riga_del_file);
                 if(countRiga==1)
                     strcpy(titolo,riga_del_file);
                 if(countRiga==2)
@@ -39,7 +45,7 @@ int main() {
                     mese=atoi(riga_del_file);
                 if(countRiga==5){
                     char isTrue[5];
-                    strcpy (isTrue, "true\n");
+                    strcpy (isTrue, "true");
                     if (strcmp(isTrue,riga_del_file)==0){
                         done=true;
                     }
@@ -178,13 +184,13 @@ int main() {
         }
         goto menu;
         case 4: {
-            ofstream f("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoListExport.txt", ios::out);
+            ofstream f("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoList.txt", ios::out);
             if(!f){
                 cout<<"Errore scrittura del file"<< endl;
                 goto menu;
             }
             f.close();
-            ofstream g("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoListExport.txt", ios::app);
+            ofstream g("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoList.txt", ios::app);
             for (int i =1;i<=todoList.getSize();i++){
                 Activity a = todoList.getActivityy(i);
                 g<<"NEXT"<<endl;
@@ -198,6 +204,8 @@ int main() {
                 g<<done<<endl;
             }
             g.close();
+            printf ("Export finished");
+            goto menu;
         }
         case 5:
             return 0;

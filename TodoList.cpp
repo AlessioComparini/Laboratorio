@@ -70,7 +70,7 @@ void TodoList::setActivityDone(int position) {
     auto it=list.begin();
     for (int i=1;i<position;i++)
         it++;
-    list.remove(*it);
+    (*it).setDone(true);
 }
 
 Activity TodoList::getActivityy(int position) {
