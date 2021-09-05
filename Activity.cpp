@@ -51,5 +51,5 @@ void Activity::setDone(bool done) {
 void Activity::display() const {
     std::cout<<"Titolo:       " << title << std::endl;
     std::cout<<"Descrizione:  " << description << std::endl;
-    std::cout<<"Scadenza:     " << expiration.getDay() << "/" << expiration.getMonth() << std::endl;
+    std::cout<<"Scadenza:     " << expiration.getDay() << "/" << expiration.getMonth() << "/"<< expiration.getYear() << std::endl;
 }

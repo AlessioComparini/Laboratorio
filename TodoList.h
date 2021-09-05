@@ -9,8 +9,9 @@
 #include <list>
 #include "Activity.h"
 
-class TodoList {
+class TodoList : public std::error_code {
 public:
+    explicit TodoList(std::string n);
     void printAllActivities();
     void printActivitiesTodo();
     void printActivitiesDone();
@@ -19,10 +20,16 @@ public:
     void removeActivity(int pos);
     void setActivityDone(Activity a);
     void setActivityDone(int position);
-    int getSize();
+    const int getSize();
     Activity getActivityy(int position);
 private:
+public:
+    const std::string &getName() const;
+
+private:
     std::list<Activity> list;
+    std::string name;
+
 };
 
 

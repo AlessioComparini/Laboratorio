@@ -8,15 +8,22 @@
 
 class Date {
 public:
-    Date(int d, int m);
+    Date(int d, int m, int year);
 
     int getDay() const;
 
     int getMonth() const;
 
 private:
-    int day;
-    int month;
+    short unsigned int day;
+    short unsigned int month;
+    short unsigned int year;
+public:
+    unsigned short getYear() const;
+
+private:
+
+    int getMaxDays(int year);
 };
 
 

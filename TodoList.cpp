@@ -5,6 +5,10 @@
 #include <iostream>
 #include "TodoList.h"
 
+TodoList::TodoList(std::string n) {
+    this->name = n;
+}
+
 void TodoList::printAllActivities() {
     int num = 1;
     if (list.size()) {
@@ -62,7 +66,7 @@ void TodoList::removeActivity(int pos) {
     list.remove(*it);
 }
 
-int TodoList::getSize() {
+const int TodoList::getSize() {
     return list.size();
 }
 
@@ -78,4 +82,8 @@ Activity TodoList::getActivityy(int position) {
     for (int i=1;i<position;i++)
         it++;
     return *it;
+}
+
+const std::string &TodoList::getName() const {
+    return name;
 }
