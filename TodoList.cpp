@@ -66,7 +66,7 @@ void TodoList::removeActivity(int pos) {
     list.remove(*it);
 }
 
-const int TodoList::getSize() {
+int TodoList::getSize() {
     return list.size();
 }
 

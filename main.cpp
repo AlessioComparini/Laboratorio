@@ -7,19 +7,19 @@
 #include <fstream>
 
 int getMaxDays(int year, int month);
-
+static std::string listSelected;
 using namespace std;
 
 int main() {
     ListOfLists lol;
     nuovalista:
-    std::string listName;
     cout<< "Nome lista:";
-    getline(cin, listName);
-    TodoList newList(listName);
+    getline(cin, listSelected);
+    TodoList newList(listSelected);
     int choice;
     cout << "\nImport file? (1=si/0=no)" << endl;
     cin >> choice;
+
     if (choice){  //import from txt file
         FILE *filePTR;
         int countRiga = 0;
@@ -69,10 +69,9 @@ int main() {
 
     }
     lol.addList(newList);
-    TodoList todoList= lol.getList(listName);
     menu:
     cin.clear();
-    cout << "\nWhat to do in the list" + todoList.getName()  << endl;
+    cout << "\nWhat to do in the list '" + listSelected +"'"  << endl;
     cout << "1- Activity list" << endl;
     cout << "2- Add activity" << endl;
     cout << "3- Remove activity" << endl;
@@ -85,7 +84,7 @@ int main() {
         case 1:
             subMenu1:
                 cin.clear();
-                todoList.printAllActivities();
+                lol.getList(listSelected).printAllActivities();
                 cout << "\nWhat do you want to do?" << endl;
                 cout << "1- Modify an activity" << endl;
                 cout << "2- Go back" << endl;
@@ -108,8 +107,8 @@ int main() {
                                     goto subMenu1;
                                 cout << endl;
                                 error = true;
-                            } while (activitySel < 1 || activitySel > todoList.getSize());
-                            cout << "Activity " << activitySel << "is selected" << endl;
+                            } while (activitySel < 1 || activitySel > lol.getList(listSelected).getSize());
+                            cout << "Activity " << activitySel << " is selected" << endl;
                             cout << "1- Delete it" << endl;
                             cout << "2- Mark as done" << endl;
                             cout << "3- Move the activity in another list" << endl;
@@ -122,25 +121,26 @@ int main() {
                                     cout << "\nDigit error, try again." << endl;
                                     goto subMenu2;
                                     case 1:
-                                        todoList.removeActivity(activitySel);
+                                        lol.removeActivityFromList(listSelected,activitySel);
                                         cout << "\nActivity deleted succesfully!" << endl;
                                         goto subMenu1;
                                     case 2:
-                                        todoList.setActivityDone(activitySel);
+                                        lol.setActivityDone(listSelected, activitySel);
                                         cout << "\nGood job!" << endl;
                                         goto subMenu1;
                                     case 3:
                                         if (lol.getSize()<2){
-                                            cout << "Not enought lists" << endl;
+                                            cout << "Not enought lists to move an item" << endl;
                                             goto menu;
                                         }
                                         else {
-                                            string moveList;
+                                            string move;
                                             cout << "To which other list you want to move the activity? Choose between.." << endl;
                                             lol.printLists();
-                                            getline(cin, moveList);
-                                            if (lol.findList(moveList)){
-                                                lol.moveList(todoList,lol.getList(moveList),todoList.getActivityy(activitySel));
+                                            cin.clear();
+                                            getline(cin,move);
+                                            if (lol.findList(move)){
+                                                lol.moveList (listSelected,move,lol.getList(listSelected).getActivityy(activitySel));
                                             }
                                             else
                                                 cout<< "The input is not a list"<< endl;
@@ -180,21 +180,21 @@ int main() {
                 }
                 Date expiration(day, month,year);
                 Activity a(description, title, expiration, false);
-                todoList.addActivity(a);
+                lol.addActivityToList(listSelected,a);
             }
             goto menu;
         case 3: {
-            todoList.printAllActivities();
+            lol.getList(listSelected).printAllActivities();
             cout << "Number of the activity you want to delete (type '0' to cancel): ";
             int deleteActivity;
             cin >> deleteActivity;
             cout << endl;
             if(!deleteActivity)
                 goto menu;
-            if (deleteActivity <= 0 || deleteActivity > todoList.getSize())
+            if (deleteActivity <= 0 || deleteActivity > lol.getList(listSelected).getSize())
                 cout << "\nOut of range number" << endl;
             else {
-                todoList.removeActivity(deleteActivity);
+                lol.removeActivityFromList(listSelected,deleteActivity);
                 cout << "\nActivity deleted succesfully" << endl;
             }
         }
@@ -207,8 +207,8 @@ int main() {
             }
             f.close();
             ofstream g("C:\\Users\\aleal\\Documents\\LaboratorioDiProgrammazione\\TodoList.txt", ios::app);
-            for (int i =1;i<=todoList.getSize();i++){
-                Activity a = todoList.getActivityy(i);
+            for (int i =1;i<=lol.getList(listSelected).getSize();i++){
+                Activity a = lol.getList(listSelected).getActivityy(i);
                 g<<"NEXT"<<endl;
                 g<<a.getTitle()<<endl;
                 g<<a.getDescription()<<endl;
@@ -230,11 +230,11 @@ int main() {
             std::string listChoice;
             while (true) {
                 cout<<"Select a list typing its name (type '0' to create a new list) -> ";
-                cin >> listChoice;
+                getline (cin, listChoice);
                 if (listChoice == "0")
                     goto nuovalista;
                 else if (lol.findList(listChoice)){
-                    todoList=lol.getList(listChoice);
+                    listSelected=lol.getList(listChoice).getName();
                     break;
                 }
                 else

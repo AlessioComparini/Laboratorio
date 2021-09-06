@@ -20,12 +20,9 @@ public:
     void removeActivity(int pos);
     void setActivityDone(Activity a);
     void setActivityDone(int position);
-    const int getSize();
+    int getSize();
     Activity getActivityy(int position);
-private:
-public:
     const std::string &getName() const;
-
 private:
     std::list<Activity> list;
     std::string name;
