@@ -10,20 +10,18 @@ class Date {
 public:
     Date(int d, int m, int year);
 
-    int getDay() const;
+    const int getDay() const;
 
-    int getMonth() const;
+    const int getMonth() const;
 
+    const unsigned short getYear() const;
 private:
     short unsigned int day;
     short unsigned int month;
     short unsigned int year;
-public:
-    unsigned short getYear() const;
+    int getMaxDays(int year, int month) const;
 
-private:
 
-    int getMaxDays(int year);
 };
 
 

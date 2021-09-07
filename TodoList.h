@@ -12,9 +12,9 @@
 class TodoList : public std::error_code {
 public:
     explicit TodoList(std::string n);
-    void printAllActivities();
-    void printActivitiesTodo();
-    void printActivitiesDone();
+    const void printAllActivities() const;
+    const void printActivitiesTodo() const;
+    const void printActivitiesDone() const;
     void addActivity(Activity a);
     void removeActivity(Activity a);
     void removeActivity(int pos);

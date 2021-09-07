@@ -4,13 +4,12 @@
 
 #include <gtest/gtest.h>
 #include "../TodoList.h"
-#include "../Activity.h"
 
 
 
 TEST(TodoList , TodoListSizeTest){
-    Activity a = Activity("a","a",Date(1,1),false);
-    TodoList tl;
+    Activity a = Activity("a","a",Date(1,1,1999),false);
+    TodoList tl("lista 1");
     EXPECT_EQ(tl.getSize(),0);
     tl.addActivity(a);
     EXPECT_EQ(tl.getSize(),1);

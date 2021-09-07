@@ -9,7 +9,7 @@ TodoList::TodoList(std::string n) {
     this->name = n;
 }
 
-void TodoList::printAllActivities() {
+const void TodoList::printAllActivities() const {
     int num = 1;
     if (list.size()) {
         for (auto it : list) {
@@ -26,7 +26,7 @@ void TodoList::printAllActivities() {
     }
 }
 
-void TodoList::printActivitiesTodo() {
+const void TodoList::printActivitiesTodo() const {
     for (auto it : list){
         if (!it.isDone()) {
             it.display();
@@ -36,7 +36,7 @@ void TodoList::printActivitiesTodo() {
 
 }
 
-void TodoList::printActivitiesDone() {
+const void TodoList::printActivitiesDone() const {
     for (auto it : list) {
         if (it.isDone())
             it.display();

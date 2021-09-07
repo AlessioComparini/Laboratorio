@@ -6,23 +6,17 @@
 #include <iostream>
 
 Date::Date(int aDay, int aMonth, int aYear) {
-    if (aYear < 0)
-        throw std::runtime_error("Year < 0");
-    if (aDay < 0)
-        throw std::runtime_error("Days < 0");
-    if (aMonth < 0 || aMonth > 12)
-        throw std::runtime_error("Error in month number");
+    if (aYear < 0 or aDay < 1 or aMonth < 1 or aMonth > 12 or aDay > getMaxDays(aYear, aMonth)){
+        throw std::runtime_error ("Date not valid");
+    }
+    this->day = aDay;
     this->month = aMonth;
     this->year = aYear;
-    if (aDay > getMaxDays(this->year))
-        throw std::runtime_error("Error in number of days");
-    this->day = aDay;
-
 }
 
-int Date::getMaxDays(int year) {
+int Date::getMaxDays(int year, int month) const {
     short unsigned int maxDay = 31;
-    switch (this->month) {
+    switch (month) {
         case 4: //April
         case 6: //June
         case 8: //September
@@ -49,14 +43,14 @@ int Date::getMaxDays(int year) {
     return maxDay;
 }
 
-int Date::getDay() const {
+const int Date::getDay() const {
     return day;
 }
 
-int Date::getMonth() const {
+const int Date::getMonth() const {
     return month;
 }
 
-unsigned short Date::getYear() const {
+const unsigned short Date::getYear() const {
     return year;
 }

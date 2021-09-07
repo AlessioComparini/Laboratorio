@@ -44,7 +44,7 @@ bool Activity::isDone() const {
     return done;
 }
 
-void Activity::setDone(bool done) {
+void Activity::setDone(const bool done) {
     Activity::done = done;
 }
 

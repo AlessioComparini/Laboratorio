@@ -6,7 +6,7 @@
 #include "../Activity.h"
 
 TEST(Activity , ActivityTest){
-    Activity a = Activity ("null","null",Date(1,1),false);
+    Activity a = Activity ("null","null",Date(1,1,1999),false);
     ASSERT_FALSE(a.isDone());
     a.setDone(true);
     ASSERT_EQ(a.isDone(),true);
