@@ -14,6 +14,9 @@ TEST(TodoList , TodoListSizeTest){
     tl.addActivity(a);
     EXPECT_EQ(tl.getSize(),1);
     tl.addActivity(a);
+    EXPECT_EQ(tl.getActivityToDo(),2);
+    tl.setActivityDone(1);
+    EXPECT_EQ(tl.getActivityToDo(),1);
     tl.removeActivity(1);
     tl.removeActivity(a);
     EXPECT_EQ(tl.getSize(),0);

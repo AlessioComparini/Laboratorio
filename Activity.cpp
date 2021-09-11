@@ -13,7 +13,7 @@ Activity::Activity(std::string d, std::string t, Date e, bool done) : expiration
 }
 
 bool Activity::operator==(Activity right) const {
-    return description==right.description && title==right.title; //aggiungere controllo su attivita con lo stesso nome
+    return description==right.description && title==right.title;
 }
 
 const std::string &Activity::getDescription() const {
@@ -44,7 +44,7 @@ bool Activity::isDone() const {
     return done;
 }
 
-void Activity::setDone(const bool done) {
+void Activity::setDone(bool done) {
     Activity::done = done;
 }
 

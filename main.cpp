@@ -57,7 +57,8 @@ int main() {
                     if (strcmp(isTrue,riga_del_file)==0){
                         done=true;
                     }
-                    newList.addActivity(Activity (titolo,descrizione,Date(giorno,mese,anno),done));
+                    Activity a = Activity (titolo,descrizione,Date(giorno,mese,anno),done);
+                    newList.addActivity(a);
                 }
                 countRiga++;
             }
@@ -140,7 +141,8 @@ int main() {
                                             cin.clear();
                                             getline(cin,move);
                                             if (lol.findList(move)){
-                                                lol.moveList (listSelected,move,lol.getList(listSelected).getActivityy(activitySel));
+                                                Activity a = lol.getList(listSelected).getActivityy(activitySel);
+                                                lol.moveList (listSelected,move,a);
                                             }
                                             else
                                                 cout<< "The input is not a list"<< endl;

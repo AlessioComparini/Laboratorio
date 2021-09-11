@@ -43,16 +43,16 @@ const void TodoList::printActivitiesDone() const {
     }
 }
 
-void TodoList::addActivity(Activity a) {
+void TodoList::addActivity(const Activity &a) {
     list.push_back(a);
 }
 
-void TodoList::removeActivity(Activity a) {
+void TodoList::removeActivity(Activity &a) {
     list.remove(a);
 
 }
 
-void TodoList::setActivityDone(Activity a) {
+void TodoList::setActivityDone(Activity &a) {
     for (auto it : list){
         if (it==a)
             it.setDone(true);
@@ -66,7 +66,7 @@ void TodoList::removeActivity(int pos) {
     list.remove(*it);
 }
 
-int TodoList::getSize() {
+int TodoList::getSize() const {
     return list.size();
 }
 
@@ -77,7 +77,7 @@ void TodoList::setActivityDone(int position) {
     (*it).setDone(true);
 }
 
-Activity TodoList::getActivityy(int position) {
+Activity TodoList::getActivityy(int position) const {
     auto it=list.begin();
     for (int i=1;i<position;i++)
         it++;
@@ -86,4 +86,15 @@ Activity TodoList::getActivityy(int position) {
 
 const std::string &TodoList::getName() const {
     return name;
+}
+
+int TodoList::getActivityToDo() const {
+    int count = 0;
+    auto it=list.begin();
+    while ( it != list.end()){
+        if (!(*it).isDone())
+            count++;
+        it++;
+    }
+    return count;
 }

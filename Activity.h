@@ -31,7 +31,7 @@ public:
 
     bool isDone() const;
 
-    void setDone(const bool done);
+    void setDone(bool done);
 
 private:
     std::string description;
