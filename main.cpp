@@ -57,7 +57,9 @@ int main() {
                     if (strcmp(isTrue,riga_del_file)==0){
                         done=true;
                     }
-                    Activity a = Activity (titolo,descrizione,Date(giorno,mese,anno),done);
+                    string t = string(titolo);
+                    string d = string(descrizione);
+                    Activity a = Activity (t,d,Date(giorno,mese,anno),done);
                     newList.addActivity(a);
                 }
                 countRiga++;

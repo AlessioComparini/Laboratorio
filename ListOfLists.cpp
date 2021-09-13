@@ -14,7 +14,7 @@ void ListOfLists::removeList(TodoList &t) {
     lists.remove(t);
 }
 
-void ListOfLists::moveList(std::string source, std::string destination,const Activity &a) {
+void ListOfLists::moveList(std::string &source, std::string &destination,Activity &a) {
     addActivityToList(destination,a);
     removeActivityFromList(source,a);
 }
@@ -24,7 +24,7 @@ void ListOfLists::printLists() const {
         std::cout<< it.getName() << std::endl;
 }
 
-TodoList ListOfLists::getList(std::string n) const {
+TodoList ListOfLists::getList(std::string &n) const {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==n){
@@ -45,7 +45,7 @@ int ListOfLists::getSize() const {
     return lists.size();
 }
 
-bool ListOfLists::findList(std::string n) const {
+bool ListOfLists::findList(std::string &n) const {
     for (const auto it : lists){
         if (it.getName()== n)
             return true;
@@ -53,7 +53,7 @@ bool ListOfLists::findList(std::string n) const {
     return false;
 }
 
-void ListOfLists::removeActivityFromList(std::string name, Activity &a) {
+void ListOfLists::removeActivityFromList(std::string &name, Activity &a) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
@@ -63,7 +63,7 @@ void ListOfLists::removeActivityFromList(std::string name, Activity &a) {
     }
 }
 
-void ListOfLists::removeActivityFromList(std::string name, int activityPos) {
+void ListOfLists::removeActivityFromList(std::string &name, int activityPos) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
@@ -75,7 +75,7 @@ void ListOfLists::removeActivityFromList(std::string name, int activityPos) {
 
 }
 
-void ListOfLists::addActivityToList(std::string name, const Activity &a) {
+void ListOfLists::addActivityToList(std::string &name, const Activity &a) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
@@ -85,7 +85,7 @@ void ListOfLists::addActivityToList(std::string name, const Activity &a) {
     }
 }
 
-void ListOfLists::setActivityDone(std::string name, int activityPos) {
+void ListOfLists::setActivityDone(std::string &name, int activityPos) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){

@@ -5,7 +5,7 @@
 #include <iostream>
 #include "Activity.h"
 
-Activity::Activity(std::string d, std::string t, Date e, bool done) : expiration(e) {
+Activity::Activity(std::string &d, std::string &t, Date e, bool done) : expiration(e) {
     description=d;
     title=t;
     this->done=done;

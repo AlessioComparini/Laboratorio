@@ -11,7 +11,7 @@
 
 class Activity {
 public:
-    Activity (std::string d, std::string t, Date e, bool done);
+    Activity (std::string &d, std::string &t, Date e, bool done);
 
     bool operator==(Activity right) const;
 
