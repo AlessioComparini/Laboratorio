@@ -14,7 +14,7 @@ void ListOfLists::removeList(TodoList &t) {
     lists.remove(t);
 }
 
-void ListOfLists::moveList(std::string &source, std::string &destination,Activity &a) {
+void ListOfLists::moveList(const std::string &source, const std::string &destination,Activity &a) {
     addActivityToList(destination,a);
     removeActivityFromList(source,a);
 }
@@ -45,7 +45,7 @@ int ListOfLists::getSize() const {
     return lists.size();
 }
 
-bool ListOfLists::findList(std::string &n) const {
+bool ListOfLists::findList(const std::string &n) const {
     for (const auto it : lists){
         if (it.getName()== n)
             return true;
@@ -53,7 +53,7 @@ bool ListOfLists::findList(std::string &n) const {
     return false;
 }
 
-void ListOfLists::removeActivityFromList(std::string &name, Activity &a) {
+void ListOfLists::removeActivityFromList(const std::string &name, Activity &a) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
@@ -63,7 +63,7 @@ void ListOfLists::removeActivityFromList(std::string &name, Activity &a) {
     }
 }
 
-void ListOfLists::removeActivityFromList(std::string &name, int activityPos) {
+void ListOfLists::removeActivityFromList(const std::string &name, int activityPos) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
@@ -75,7 +75,7 @@ void ListOfLists::removeActivityFromList(std::string &name, int activityPos) {
 
 }
 
-void ListOfLists::addActivityToList(std::string &name, const Activity &a) {
+void ListOfLists::addActivityToList(const std::string &name, const Activity &a) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
@@ -85,7 +85,7 @@ void ListOfLists::addActivityToList(std::string &name, const Activity &a) {
     }
 }
 
-void ListOfLists::setActivityDone(std::string &name, int activityPos) {
+void ListOfLists::setActivityDone(const std::string &name, int activityPos) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){
