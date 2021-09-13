@@ -10,11 +10,11 @@ void ListOfLists::addList(const TodoList &l) {
 }
 
 
-void ListOfLists::removeList(TodoList &t) {
+void ListOfLists::removeList(const TodoList &t) {
     lists.remove(t);
 }
 
-void ListOfLists::moveList(const std::string &source, const std::string &destination,Activity &a) {
+void ListOfLists::moveList(const std::string &source, const std::string &destination,const Activity &a) {
     addActivityToList(destination,a);
     removeActivityFromList(source,a);
 }
@@ -24,7 +24,7 @@ void ListOfLists::printLists() const {
         std::cout<< it.getName() << std::endl;
 }
 
-TodoList ListOfLists::getList(std::string &n) const {
+TodoList ListOfLists::getList(const std::string &n) const {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==n){
@@ -53,7 +53,7 @@ bool ListOfLists::findList(const std::string &n) const {
     return false;
 }
 
-void ListOfLists::removeActivityFromList(const std::string &name, Activity &a) {
+void ListOfLists::removeActivityFromList(const std::string &name, const Activity &a) {
     auto it = lists.begin();
     while (it != lists.end()){
         if ((*it).getName()==name){

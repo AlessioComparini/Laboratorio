@@ -11,15 +11,15 @@
 class ListOfLists {
 public:
     void addList (const TodoList &l);
-    void removeList (TodoList &t);
-    void moveList (const std::string &source,const std::string &destination, Activity &a );
+    void removeList (const TodoList &t);
+    void moveList (const std::string &source,const std::string &destination, const Activity &a );
     void printLists () const;
-    TodoList getList (std::string &n) const;
+    TodoList getList (const std::string &n) const;
     TodoList getList (int n) const;
     int getSize() const;
     bool findList(const std::string &n) const;
     void addActivityToList (const std::string &name, const Activity &a);
-    void removeActivityFromList (const std::string &name, Activity &a);
+    void removeActivityFromList (const std::string &name,const Activity &a);
     void removeActivityFromList (const std::string &name, int activityPos);
     void setActivityDone (const std::string &name, int activityPos);
 private:

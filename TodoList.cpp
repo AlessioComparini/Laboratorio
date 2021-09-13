@@ -5,7 +5,7 @@
 #include <iostream>
 #include "TodoList.h"
 
-TodoList::TodoList(std::string n) {
+TodoList::TodoList(const std::string &n) {
     this->name = n;
 }
 
@@ -47,12 +47,12 @@ void TodoList::addActivity(const Activity &a) {
     list.push_back(a);
 }
 
-void TodoList::removeActivity(Activity &a) {
+void TodoList::removeActivity(const Activity &a) {
     list.remove(a);
 
 }
 
-void TodoList::setActivityDone(Activity &a) {
+void TodoList::setActivityDone(const Activity &a) {
     for (auto it : list){
         if (it==a)
             it.setDone(true);
